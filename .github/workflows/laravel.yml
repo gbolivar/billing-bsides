@@ -38,10 +38,10 @@ jobs:
       env:
         #DB_CONNECTION: sqlite
         #DB_DATABASE: database/database.sqlite
-        DB_CONNECTION:pgsql  
-        DB_HOST:localhost
-        DB_PORT:5432
-        DB_DATABASE:billing_bsides_db
-        DB_USERNAME:postgres
-        DB_PASSWORD:postgres  
+        DB_CONNECTION: pgsql  
+        DB_HOST: 10.10.1.0.3
+        DB_PORT: 5432
+        DB_DATABASE: billing_bsides_db
+        DB_USERNAME: bsides
+        DB_PASSWORD: '#-bs1dEsP&%.' 
       #run: vendor/bin/phpunit
