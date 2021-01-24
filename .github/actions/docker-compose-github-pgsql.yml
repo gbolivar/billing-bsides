@@ -14,7 +14,7 @@ services:
       - "5432:5432"
     networks:
       bsides_net:
-        ipv4_address: 10.10.1.0.3
+        ipv4_address: 192.10.100.3
 networks:
   bsides_net:
     external:
