@@ -6,9 +6,9 @@ services:
     restart: always
     hostname: psql-vm
     environment:
-      POSTGRES_DB: 'billing_bsides_db'
-      POSTGRES_USER: 'bsides'
-      POSTGRES_PASSWORD: '#-bs1dEsP&%.'
+      POSTGRES_DB: billing_bsides_db
+      POSTGRES_USER: bsides
+      POSTGRES_PASSWORD: bsides
       VIRTUAL_HOST: iron-psql.localhost
     ports:
       - "5432:5432"
