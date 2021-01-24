@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+  net_machine:
+    image: alpine
+    container_name:  net_machine
+    command: echo "installed networks"
+    restart: always
+    networks:
+      bsides_net:
+
+networks:
+  bsides_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.10.1.0/24

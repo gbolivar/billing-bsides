@@ -1,0 +1,21 @@
+version: "3.1"
+services:
+  postgres:
+    container_name: iron-machine-database-psql
+    image: postgres:11
+    restart: always
+    hostname: psql-vm
+    environment:
+      POSTGRES_DB: 'billing_bsides_db'
+      POSTGRES_USER: 'bsides'
+      POSTGRES_PASSWORD: '#-bs1dEsP&%.'
+      VIRTUAL_HOST: iron-psql.localhost
+    ports:
+      - "5432:5432"
+    networks:
+      bsides_net:
+        ipv4_address: 10.10.1.0.3
+networks:
+  bsides_net:
+    external:
+      name: network_iron_bsides_net
