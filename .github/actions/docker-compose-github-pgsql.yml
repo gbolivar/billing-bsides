@@ -18,4 +18,4 @@ services:
 networks:
   bsides_net:
     external:
-      name: network_iron_bsides_net
+      name: actions_bsides_net
