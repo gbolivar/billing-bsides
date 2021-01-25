@@ -14,9 +14,9 @@ jobs:
       postgresql:
         image: postgres:11
         env:
-          POSTGRES_DB: billing_bsides_db
-          POSTGRES_USER: bsides
-          POSTGRES_PASSWORD: bsides
+          POSTGRES_DB: ${{secrets.LUMEN_DATABASE_DB}}
+          POSTGRES_USER: ${{ secrets.LUMEN_DATABASE_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.LUMEN_DATABASE_PASS }}
           VIRTUAL_HOST: iron-psql.localhost
         #ports:
         #  - 54322:5432
