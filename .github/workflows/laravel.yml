@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     services:
-      mysql:
+      postgresql:
         image: postgres:11
         env:
           POSTGRES_DB: billing_bsides_db
@@ -20,11 +20,6 @@ jobs:
           VIRTUAL_HOST: iron-psql.localhost
         ports:
           - 5432
-        #env:
-        #  MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        #  MYSQL_DATABASE: test_db
-        #ports:
-        #  - 3306
 
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
