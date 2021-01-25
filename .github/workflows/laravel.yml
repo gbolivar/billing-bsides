@@ -17,14 +17,14 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v2
     - name: Create .env LARAVEL_CONTENT_ENV
-      #run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      run: php -r "file_put_contents('.env', '${{ secrets.LARAVEL_CONTENT_ENV }}');"
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      #run: php -r "file_put_contents('.env', '${{ secrets.LARAVEL_CONTENT_ENV }}');"
     - name: Install Docker networks
       run: docker-compose -f .github/actions/docker-compose-github-network.yml up -d --build
-    - name: Create Docker PostgreSql
-      run: php -r "file_put_contents('.github/actions/docker-compose-github-pgsql.yml', '${{ secrets.DOCKER_COMPOSE_YML }}');"
+    #- name: Create Docker PostgreSql
+    #  run: php -r "file_put_contents('.github/actions/docker-compose-github-pgsql.yml', '${{ secrets.DOCKER_COMPOSE_YML }}');"
     - name: Show Files
-      run: ls -ls .github/actions/ 
+      run: cat .env 
     - name: Install Docker PostgreSql
       run: docker-compose -f .github/actions/docker-compose-github-pgsql.yml up -d --build
     - name: Install Dependencies
