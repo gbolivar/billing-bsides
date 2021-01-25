@@ -21,10 +21,10 @@ jobs:
       run: php -r "file_put_contents('.env', '${{ secrets.LARAVEL_CONTENT_ENV }}');"
     - name: Install Docker networks
       run: docker-compose -f .github/actions/docker-compose-github-network.yml up -d --build
-    #- name: Create Docker PostgreSql
-    #  run: php -r "file_put_contents('.github/actions/docker-compose-github-pgsql.yml', '${{ secrets.DOCKER_COMPOSE_YML }}');"
+    - name: Create Docker PostgreSql
+      run: php -r "file_put_contents('.github/actions/docker-compose-github-pgsql.yml', '${{ secrets.DOCKER_COMPOSE_YML }}');"
     - name: Show Files
-      run: cat .env 
+      run: cat .github/actions/docker-compose-github-pgsql.yml 
     - name: Install Docker PostgreSql
       run: docker-compose -f .github/actions/docker-compose-github-pgsql.yml up -d --build
     - name: Install Dependencies
