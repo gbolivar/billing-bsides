@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     services:
-      postgresql:
+      postgres:
         image: postgres:11
         env:
           POSTGRES_DB: ${{secrets.LUMEN_DATABASE_DB}}
@@ -33,7 +33,7 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v2
     - name: Create .env LARAVEL_CONTENT_ENV
-      run: php -r "file_exists('.env') || copy('.env.example-old', '.env');"
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       #run: php -r "file_put_contents('.env', '${{ secrets.LARAVEL_CONTENT_ENV }}');"
     ##- name: Install Docker networks
     ##  run: docker-compose -f .github/actions/docker-compose-github-network.yml up -d --build
