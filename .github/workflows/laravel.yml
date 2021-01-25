@@ -23,6 +23,8 @@ jobs:
       run: docker-compose -f .github/actions/docker-compose-github-network.yml up -d --build
     - name: Create Docker PostgreSql
       run: php -r "file_put_contents('.github/actions/docker-compose-github-pgsql.yml', '${{ secrets.DOCKER_COMPOSE_YML }}');"
+    - name: Show Files
+      run: ls -ls .github/actions/ 
     - name: Install Docker PostgreSql
       run: docker-compose -f .github/actions/docker-compose-github-pgsql.yml up -d --build
     - name: Install Dependencies
