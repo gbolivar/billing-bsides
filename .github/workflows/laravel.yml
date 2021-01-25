@@ -18,8 +18,14 @@ jobs:
           POSTGRES_USER: bsides
           POSTGRES_PASSWORD: bsides
           VIRTUAL_HOST: iron-psql.localhost
-        ports:
-          - 5432
+        #ports:
+        #  - 54322:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        
 
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
