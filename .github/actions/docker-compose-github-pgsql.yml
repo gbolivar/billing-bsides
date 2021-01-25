@@ -7,8 +7,8 @@ services:
     hostname: psql-vm
     environment:
       POSTGRES_DB: billing_bsides_db
-      POSTGRES_USER: ${{ secrets.PGSQL_CONFIG_USER }}
-      POSTGRES_PASSWORD: ${{ secrets.PGSQL_CONFIG_PASS }}
+      POSTGRES_USER: bsides
+      POSTGRES_PASSWORD: bsides
       VIRTUAL_HOST: iron-psql.localhost
     ports:
       - "5432:5432"
