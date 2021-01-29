@@ -103,14 +103,14 @@ jobs:
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
           sudo ./aws/install
-      # Configure AWS credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ec2-52-90-154-101.compute-1
-    
+    #  # Configure AWS credentials
+    #  - name: Configure AWS credentials
+    #    uses: aws-actions/configure-aws-credentials@v1
+    #    with:
+    #      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #      aws-region: ec2-52-90-154-101.compute-1
+    #
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -120,12 +120,23 @@ jobs:
           path: vendor
           key: dependencies-php-composer-${{ hashFiles('**/composer.lock') }}
 
-      - name: AWS Create Deployment
-        run: |
-          aws deploy create-deployment \
-           --application-name ${{ matrix.appname }} \
-           --deployment-config-name CodeDeployDefault.OneAtATime \
-           --deployment-group-name ${{ matrix.deploy-group }} \
-           --file-exists-behavior OVERWRITE  
-           --source .
+     ## - name: AWS Create Deployment
+     ##   run: |
+     ##     aws deploy create-deployment \
+     ##      --application-name ${{ matrix.appname }} \
+     ##      --deployment-config-name CodeDeployDefault.OneAtATime \
+     ##      --deployment-group-name ${{ matrix.deploy-group }} \
+     ##      --file-exists-behavior OVERWRITE  
+     ##      --source .
+
+      - name: Deploy
+        uses: AEnterprise/rsync-deploy@v1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          ARGS: '-avzh --exclude=".*"'
+          SERVER_PORT: ${{ secrets.DEPLOY_PORT }}
+          FOLDER: "./"
+          SERVER_IP: ${{ secrets.DEPLOY_HOST }}
+          USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+          SERVER_DESTINATION: "/var/machine/code/php"
        
