@@ -138,5 +138,5 @@ jobs:
           FOLDER: "./"
           SERVER_IP: ${{ secrets.DEPLOY_HOST }}
           USERNAME: ${{ secrets.DEPLOY_USERNAME }}
-          SERVER_DESTINATION: "/var/machine/code/bsides"
+          SERVER_DESTINATION: "/var/www/html"
        
