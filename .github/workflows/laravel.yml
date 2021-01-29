@@ -1,4 +1,4 @@
-name: CI/CD DevSecOps BSides Lumen
+name: Example CI/CD DevSecOps BSides Lumen
 
 on:
   push:
