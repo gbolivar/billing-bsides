@@ -139,5 +139,5 @@ jobs:
           FOLDER: "./"
           SERVER_IP: ${{ secrets.DEPLOY_HOST }}
           USERNAME: ${{ secrets.DEPLOY_USERNAME }}
-          SERVER_DESTINATION: "/var/www/html"
+          SERVER_DESTINATION: "/home/ubuntu/html"
        
