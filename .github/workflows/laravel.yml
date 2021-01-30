@@ -120,16 +120,6 @@ jobs:
           path: vendor
           key: dependencies-php-composer-${{ hashFiles('**/composer.lock') }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
-          coverage: none
-
-      - name: Install dependencies
-        run: composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-
       - name: Copy dotenv file
         run: php -r "file_put_contents(__DIR__ . '.env'', '${{ secrets.LARAVEL_ENV_PROD }}');"
 
