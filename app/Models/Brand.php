@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 
 
-class Billing extends Model
+class Brand extends Model
 {
-    protected $table = 'billing';
+    protected $table = 'brands';
 
     protected $fillable = [
-        'subscription_id', 
+        'label', 
     ];
 
 }

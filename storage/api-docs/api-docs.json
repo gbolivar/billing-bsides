@@ -1,0 +1,233 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API - Billing Panel Control",
+        "version": "0.1"
+    },
+    "paths": {
+        "/V1/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "LOGIN",
+                "description": "login app with login and passowd",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "login": {
+                                        "type": "date"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "login": "users",
+                                    "password": "key"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "{'message':'The item was created successfully.'}",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "message": "The item was created successfully."
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "{'message':'The server did not find the registry.'}",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "message": "The server did not find the registry."
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "{'message':'The server did not find the registry.'}",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "message": "Validation errors in your request."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/refresh": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "TOKEN-REFRESH",
+                "description": "refresh token jwt",
+                "operationId": "refresh",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJpcm9uY29yZS1qd3QiLCJzdWIiOjUsImlhdCI6MTU4MDAwODg2OSwiZXhwIjoxNTgwMDEyNDY5fQ.NZoTefzgmhl-1wq1nSxfBS_-vUPIFjRPNiUwynQIjYM"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{'message':'The item was created successfully.'}"
+                    },
+                    "422": {
+                        "description": "{'message':'Malformed request, required for header: authorization, x-transaction-id, requestaudit.'}"
+                    },
+                    "401": {
+                        "description": "{'message':'Unauthorized required Bearer Token.'}"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/V1/token/validate": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "TOKEN-VALIDATE",
+                "description": "validate",
+                "operationId": "validate",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJpcm9uY29yZS1qd3QiLCJzdWIiOjUsImlhdCI6MTU4MDAwODg2OSwiZXhwIjoxNTgwMDEyNDY5fQ.NZoTefzgmhl-1wq1nSxfBS_-vUPIFjRPNiUwynQIjYM"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{'message':'success.'}"
+                    },
+                    "422": {
+                        "description": "{'message':'Malformed request, required for header: authorization, x-transaction-id, requestaudit.'}"
+                    },
+                    "401": {
+                        "description": "{'message':'Unauthorized required Bearer Token.'}"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/V1/product/list": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "TOKEN-VALIDATE",
+                "description": "List of products ",
+                "operationId": "listProducts",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "type": "json"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "message": "Sucess",
+                                    "items": "[]"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "{'message':'Validation errors in your request.'}",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "message": "Validation errors in your request."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    }
+}

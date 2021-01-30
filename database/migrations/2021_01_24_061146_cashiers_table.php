@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Cashiers extends Migration
+class CashiersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,8 @@ class Cashiers extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('login', 15);
-            $table->string('clave', 155);
+            $table->string('login', 15)->unique();
+            $table->string('passwd', 255);
             $table->timestamps();
         });
     }

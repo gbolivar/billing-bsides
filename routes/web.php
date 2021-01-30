@@ -14,5 +14,23 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    //return $router->app->version();
+});
+
+$router->group(['prefix' => 'v1/login','middleware' => ['logger.audit']], function () use ($router) {
+    $router->post('/', ['uses' => 'AuthLoginController']);
+});
+
+$router->group(['prefix' => 'v1', 'middleware' => ["auth.jwt", "logger.audit"]], function() use ($router) {
+
+    // Token
+    $router->group(['prefix' => 'token'], function () use ($router) {
+        $router->post('refresh',  ['uses' => 'AuthRefreshController']);
+        $router->post('validate', ['uses' => 'AuthValidateController']);
+    });
+
+    // Product
+    $router->group(['prefix' => 'product'], function () use ($router) {
+           $router->post('list', ['uses' => 'ProductController']);
+    });
 });

@@ -23,7 +23,18 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+// change logger
+// With this
+$app = new App\Application(
+    realpath(__DIR__ . '/../')
+);
+
+
 // $app->withFacades();
+$app->withFacades();
+$app->configure('apps');
+$app->configure('swagger-lume');
+$app->configure('database');
 
 // $app->withEloquent();
 
@@ -80,6 +91,26 @@ $app->configure('app');
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+$app->middleware([
+    //'Vluzrmos\LumenCors\CorsMiddleware',
+    App\Http\Middleware\CorsMiddleware::class,
+    App\Http\Middleware\CreateTDXMiddleware::class
+]);
+
+// $app->routeMiddleware([
+//     'auth' => App\Http\Middleware\Authenticate::class,
+// ]);
+
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+    //'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    //'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'auth.jwt' => App\Http\Middleware\JwtMiddleware::class,
+    'auth.bearer'  => App\Http\Middleware\BearerAuthenticate::class,
+    'logger.audit' => App\Http\Middleware\RequestPreLoggerMiddleware::class
+]);
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -92,8 +123,15 @@ $app->configure('app');
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+// Add this line
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(App\Providers\LogServiceProvider::class);
+$app->register(\SwaggerLume\ServiceProvider::class);
+$app->register(\Illuminate\Redis\RedisServiceProvider::class);
+$app->register(\Jenssegers\Mongodb\MongodbServiceProvider::class);
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------

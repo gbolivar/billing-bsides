@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Customers extends Migration
+class CustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -24,7 +24,7 @@ class Customers extends Migration
             // 27 para mujeres, 23, 24, 25 o 26 para ambos (en caso de que ya exista un CUIT idéntico) 
             //y 30 para empresas
 
-            $table->bigInteger('cuit');
+            $table->bigInteger('cuit')->unique();;
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
