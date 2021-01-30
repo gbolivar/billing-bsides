@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [7.3, 7.4, 8.0]
+        php: [7.3, 7.4]
 
     name: TEST - PHP ${{ matrix.php }}
 
@@ -133,4 +133,9 @@ jobs:
           SERVER_IP: ${{ secrets.DEPLOY_HOST }}
           USERNAME: ${{ secrets.DEPLOY_USERNAME }}
           SERVER_DESTINATION: "/home/ubuntu/html"
-       
+
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.4.0
+        with:
+          target: 'http://ec2-52-90-154-101.compute-1.amazonaws.com'
+        
