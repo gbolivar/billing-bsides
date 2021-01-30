@@ -121,7 +121,7 @@ jobs:
           key: dependencies-php-composer-${{ hashFiles('**/composer.lock') }}
 
       - name: Copy dotenv file
-        run: php -r "file_put_contents(__DIR__ . '.env'', '${{ secrets.LARAVEL_ENV_PROD }}');"
+        run: php -r "file_put_contents('.env', '${{ secrets.LARAVEL_ENV_PROD }}');"
 
       - name: Deploy
         uses: AEnterprise/rsync-deploy@v1.0
