@@ -1,1 +1,0 @@
-[2021-01-29T21:17:02.046468+00:00] local.ERROR: Command "predis/predis" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"predis/predis\" is not defined. at /app/billing-bsides/vendor/symfony/console/Application.php:675)"} 
